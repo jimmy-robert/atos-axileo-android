@@ -19,12 +19,26 @@
         android:id="@+id/actorsFragment"
         android:name="cloud.robert.mcumovies.views.fragments.ActorsFragment"
         android:label="fragment_actors"
-        tools:layout="@layout/fragment_actors" />
+        tools:layout="@layout/fragment_actors" >
+        <action
+            android:id="@+id/action_actorsFragment_to_actorFragment"
+            app:destination="@id/actorFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/movieFragment"
         android:name="cloud.robert.mcumovies.views.fragments.MovieFragment"
         android:label="fragment_movie"
-        tools:layout="@layout/fragment_movie" />
+        tools:layout="@layout/fragment_movie" >
+        <action
+            android:id="@+id/action_movieFragment_to_actorFragment"
+            app:destination="@id/actorFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/actorFragment"
+        android:name="cloud.robert.mcumovies.views.fragments.ActorFragment"
+        android:label="fragment_actor"
+        tools:layout="@layout/fragment_actor" />
 
 </navigation>

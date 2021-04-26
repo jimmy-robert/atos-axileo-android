@@ -40,4 +40,5 @@ class Repository(
     fun getMovie(id: Int) = db.movieDao().get(id)
 
     fun getActors() = db.actorDao().getAll()
+    fun getActor(id: Int) = db.actorDao().get(id)
 }

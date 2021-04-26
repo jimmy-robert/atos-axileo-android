@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
@@ -12,12 +13,15 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import cloud.robert.mcumovies.R
 import cloud.robert.mcumovies.business.models.entities.Movie
+import cloud.robert.mcumovies.viewmodels.ActorViewModel
 import cloud.robert.mcumovies.viewmodels.MainViewModel
 import cloud.robert.mcumovies.views.viewholders.MovieViewHolder
 
 class MoviesFragment : Fragment() {
 
     private val mainViewModel by activityViewModels<MainViewModel>()
+
+    private val actorViewModel by viewModels<ActorViewModel>({ requireParentFragment() })
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,15 +40,24 @@ class MoviesFragment : Fragment() {
         moviesGrid.layoutManager = GridLayoutManager(view.context, 2)
         moviesGrid.adapter = adapter
 
-        mainViewModel.movies.observe(viewLifecycleOwner) {
-            adapter.movies = it
-            adapter.notifyDataSetChanged()
+        val parent = parentFragment
+        if (parent is ActorFragment) {
+            actorViewModel.getActor(parent.actorId).observe(viewLifecycleOwner) {
+                adapter.movies = it.movies
+                adapter.notifyDataSetChanged()
+            }
+        }
+
+        else {
+            mainViewModel.movies.observe(viewLifecycleOwner) {
+                adapter.movies = it
+                adapter.notifyDataSetChanged()
+            }
         }
     }
 
     private fun navigateToMovie(movie: Movie) {
-        // todo: use movie data on navigation
-        findNavController().navigate(R.id.movieFragment)
+        findNavController().navigate(R.id.movieFragment, bundleOf("movieId" to movie.id))
     }
 
     private class Adapter(
