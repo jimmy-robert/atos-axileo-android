@@ -39,6 +39,10 @@
         android:id="@+id/actorFragment"
         android:name="cloud.robert.mcumovies.views.fragments.ActorFragment"
         android:label="fragment_actor"
-        tools:layout="@layout/fragment_actor" />
+        tools:layout="@layout/fragment_actor" >
+        <action
+            android:id="@+id/action_actorFragment_to_movieFragment"
+            app:destination="@id/movieFragment" />
+    </fragment>
 
 </navigation>
