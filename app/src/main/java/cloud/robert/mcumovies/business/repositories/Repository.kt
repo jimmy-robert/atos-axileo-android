@@ -37,6 +37,7 @@ class Repository(
     }
 
     fun getMovies() = db.movieDao().getAll()
-
     fun getMovie(id: Int) = db.movieDao().get(id)
+
+    fun getActors() = db.actorDao().getAll()
 }

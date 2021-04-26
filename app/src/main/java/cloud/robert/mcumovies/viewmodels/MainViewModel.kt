@@ -11,5 +11,5 @@ class MainViewModel(
 
     val movies = repository.getMovies()
 
-    fun getMovie(id: Int) = repository.getMovie(id)
+    val actors = repository.getActors()
 }
