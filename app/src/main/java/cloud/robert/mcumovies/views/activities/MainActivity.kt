@@ -1,11 +1,14 @@
 package cloud.robert.mcumovies.views.activities
 
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.findNavController
+import androidx.navigation.ui.setupWithNavController
+import cloud.robert.mcumovies.R
 import cloud.robert.mcumovies.viewmodels.MainViewModel
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
@@ -14,14 +17,11 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
 
-        viewModel.movies.observe(this) {
-            Log.i("MCU Movies", "Found ${it.size} movies")
-        }
-
-        viewModel.getMovie(1726).observe(this) {
-            Log.i("MCU Movies", "Found ${it.movie.title} with ${it.actors.size} actors")
-        }
+        val bottomNavigationView = findViewById<BottomNavigationView>(R.id.mainBottomNavigation)
+        val navController = findNavController(R.id.navigationFragment)
+        bottomNavigationView.setupWithNavController(navController)
     }
 
     override fun onResume() {
