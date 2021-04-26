@@ -9,12 +9,22 @@
         android:id="@+id/moviesFragment"
         android:name="cloud.robert.mcumovies.views.fragments.MoviesFragment"
         android:label="fragment_movies"
-        tools:layout="@layout/fragment_movies" />
+        tools:layout="@layout/fragment_movies" >
+        <action
+            android:id="@+id/action_moviesFragment_to_movieFragment"
+            app:destination="@id/movieFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/actorsFragment"
         android:name="cloud.robert.mcumovies.views.fragments.ActorsFragment"
         android:label="fragment_actors"
         tools:layout="@layout/fragment_actors" />
+
+    <fragment
+        android:id="@+id/movieFragment"
+        android:name="cloud.robert.mcumovies.views.fragments.MovieFragment"
+        android:label="fragment_movie"
+        tools:layout="@layout/fragment_movie" />
 
 </navigation>

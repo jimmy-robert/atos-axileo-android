@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import cloud.robert.mcumovies.R
 import cloud.robert.mcumovies.business.models.entities.Actor
-import cloud.robert.mcumovies.business.models.entities.Movie
 import cloud.robert.mcumovies.viewmodels.MainViewModel
 import cloud.robert.mcumovies.views.viewholders.ActorViewHolder
 

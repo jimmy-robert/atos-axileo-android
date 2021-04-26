@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import cloud.robert.mcumovies.R
@@ -29,7 +30,7 @@ class MoviesFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val adapter = Adapter()
+        val adapter = Adapter(::navigateToMovie)
 
         val moviesGrid = view.findViewById<RecyclerView>(R.id.moviesGrid)
         moviesGrid.layoutManager = GridLayoutManager(view.context, 2)
@@ -41,12 +42,24 @@ class MoviesFragment : Fragment() {
         }
     }
 
-    private class Adapter : RecyclerView.Adapter<MovieViewHolder>() {
+    private fun navigateToMovie(movie: Movie) {
+        // todo: use movie data on navigation
+        findNavController().navigate(R.id.movieFragment)
+    }
+
+    private class Adapter(
+        private val onItemClicked: (Movie) -> Unit
+    ) : RecyclerView.Adapter<MovieViewHolder>() {
         var movies = emptyList<Movie>()
 
         override fun getItemCount() = movies.size
 
-        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = MovieViewHolder(parent)
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
+            MovieViewHolder(parent).apply {
+                itemView.setOnClickListener {
+                    onItemClicked(movies[adapterPosition])
+                }
+            }
 
         override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
             holder.bindMovie(movies[position])
