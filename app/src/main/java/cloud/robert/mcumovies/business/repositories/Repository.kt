@@ -5,10 +5,13 @@ import cloud.robert.mcumovies.app.McuApp
 import cloud.robert.mcumovies.business.databases.database.McuDatabase
 import cloud.robert.mcumovies.business.models.relations.MovieActorCrossReference
 import cloud.robert.mcumovies.business.network.McuApi
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class Repository(
-    private val api: McuApi = McuApp.api,
-    private val db: McuDatabase = McuApp.db
+@Singleton
+class Repository @Inject constructor(
+    private val api: McuApi,
+    private val db: McuDatabase
 ) {
     suspend fun fetchData() {
         val response = api.fetchData()

@@ -23,19 +23,25 @@
         <action
             android:id="@+id/action_actors_to_actor"
             app:destination="@id/actorFragment" />
+        <deepLink
+            android:id="@+id/actorsDeepLink"
+            app:uri="mcu://actors/" />
     </fragment>
 
     <fragment
         android:id="@+id/movieFragment"
         android:name="cloud.robert.mcumovies.views.fragments.MovieFragment"
         android:label="fragment_movie"
-        tools:layout="@layout/fragment_movie" >
+        tools:layout="@layout/fragment_movie">
         <action
             android:id="@+id/action_movie_to_actor"
             app:destination="@id/actorFragment" />
         <argument
             android:name="movieId"
-            app:argType="integer"/>
+            app:argType="integer" />
+        <deepLink
+            android:id="@+id/movieDeepLink"
+            app:uri="mcu://movies/{movieId}" />
     </fragment>
 
     <fragment

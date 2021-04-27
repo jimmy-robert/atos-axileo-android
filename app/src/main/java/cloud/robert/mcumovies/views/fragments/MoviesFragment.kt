@@ -4,10 +4,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.net.toUri
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
+import androidx.navigation.NavDeepLinkRequest
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -17,7 +19,9 @@ import cloud.robert.mcumovies.business.models.entities.Movie
 import cloud.robert.mcumovies.viewmodels.ActorViewModel
 import cloud.robert.mcumovies.viewmodels.MainViewModel
 import cloud.robert.mcumovies.views.viewholders.MovieViewHolder
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MoviesFragment : Fragment() {
 
     private val mainViewModel by activityViewModels<MainViewModel>()

@@ -9,8 +9,10 @@ import androidx.navigation.ui.setupWithNavController
 import cloud.robert.mcumovies.R
 import cloud.robert.mcumovies.viewmodels.MainViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private val viewModel: MainViewModel by viewModels()

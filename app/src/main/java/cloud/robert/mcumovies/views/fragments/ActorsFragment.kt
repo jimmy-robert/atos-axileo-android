@@ -15,7 +15,9 @@ import cloud.robert.mcumovies.R
 import cloud.robert.mcumovies.business.models.entities.Actor
 import cloud.robert.mcumovies.viewmodels.MainViewModel
 import cloud.robert.mcumovies.views.viewholders.ActorViewHolder
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class ActorsFragment : Fragment() {
 
     private val mainViewModel by activityViewModels<MainViewModel>()

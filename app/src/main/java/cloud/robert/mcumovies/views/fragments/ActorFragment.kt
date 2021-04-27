@@ -14,7 +14,9 @@ import cloud.robert.mcumovies.business.models.entities.Actor
 import cloud.robert.mcumovies.utils.extensions.load
 import cloud.robert.mcumovies.utils.extensions.toTmdbImageUrl
 import cloud.robert.mcumovies.viewmodels.ActorViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class ActorFragment : Fragment() {
 
     private val viewModel by viewModels<ActorViewModel>()

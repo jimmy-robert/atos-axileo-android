@@ -9,6 +9,8 @@ import android.widget.TextView
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.NavDeepLinkBuilder
+import androidx.navigation.NavDeepLinkRequest
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -23,7 +25,9 @@ import cloud.robert.mcumovies.utils.extensions.load
 import cloud.robert.mcumovies.utils.extensions.toTmdbImageUrl
 import cloud.robert.mcumovies.viewmodels.MovieViewModel
 import cloud.robert.mcumovies.views.viewholders.ActorViewHolder
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MovieFragment : Fragment() {
 
     private val viewModel by viewModels<MovieViewModel>()
