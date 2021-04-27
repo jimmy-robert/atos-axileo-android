@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
+import cloud.robert.mcumovies.MainNavigationDirections
 import cloud.robert.mcumovies.R
 import cloud.robert.mcumovies.viewmodels.MainViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -24,6 +25,13 @@ class MainActivity : AppCompatActivity() {
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.mainBottomNavigation)
         val navController = findNavController(R.id.navigationFragment)
         bottomNavigationView.setupWithNavController(navController)
+
+        // Notification intent
+        if (intent.hasExtra("movieId")) {
+            val movieId = intent.getStringExtra("movieId")?.toInt() ?: 0
+            val action = MainNavigationDirections.actionGlobalMovieFragment(movieId)
+            navController.navigate(action)
+        }
     }
 
     override fun onResume() {

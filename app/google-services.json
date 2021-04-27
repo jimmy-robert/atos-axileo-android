@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "351697593160",
+    "project_id": "advanced-android-course-67f10",
+    "storage_bucket": "advanced-android-course-67f10.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:351697593160:android:281e58995da32e39a6c97d",
+        "android_client_info": {
+          "package_name": "cloud.robert.mcumovies"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "351697593160-v78utkr5bamctse6u1j30c25av637gct.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCUVn0iXO20S0pfx3w0NIxx_OFFi4eI-3s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "351697593160-v78utkr5bamctse6u1j30c25av637gct.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
