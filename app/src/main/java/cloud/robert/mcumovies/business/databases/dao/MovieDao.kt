@@ -20,4 +20,7 @@ interface MovieDao {
 
     @Query("SELECT * FROM movie WHERE id = :id")
     fun get(id: Int): LiveData<MovieWithActors>
+
+    @Query("SELECT * FROM movie ORDER BY RANDOM()")
+    suspend fun getRandom(): Movie
 }

@@ -44,4 +44,6 @@ class Repository @Inject constructor(
 
     fun getActors() = db.actorDao().getAll()
     fun getActor(id: Int) = db.actorDao().get(id)
+
+    suspend fun getRandomMovie() = db.movieDao().getRandom()
 }
