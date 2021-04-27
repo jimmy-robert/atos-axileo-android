@@ -11,7 +11,7 @@
         android:label="fragment_movies"
         tools:layout="@layout/fragment_movies" >
         <action
-            android:id="@+id/action_moviesFragment_to_movieFragment"
+            android:id="@+id/action_movies_to_movie"
             app:destination="@id/movieFragment" />
     </fragment>
 
@@ -21,7 +21,7 @@
         android:label="fragment_actors"
         tools:layout="@layout/fragment_actors" >
         <action
-            android:id="@+id/action_actorsFragment_to_actorFragment"
+            android:id="@+id/action_actors_to_actor"
             app:destination="@id/actorFragment" />
     </fragment>
 
@@ -31,8 +31,11 @@
         android:label="fragment_movie"
         tools:layout="@layout/fragment_movie" >
         <action
-            android:id="@+id/action_movieFragment_to_actorFragment"
+            android:id="@+id/action_movie_to_actor"
             app:destination="@id/actorFragment" />
+        <argument
+            android:name="movieId"
+            app:argType="integer"/>
     </fragment>
 
     <fragment
@@ -41,8 +44,15 @@
         android:label="fragment_actor"
         tools:layout="@layout/fragment_actor" >
         <action
-            android:id="@+id/action_actorFragment_to_movieFragment"
+            android:id="@+id/action_actor_to_movie"
             app:destination="@id/movieFragment" />
+        <argument
+            android:name="actorId"
+            app:argType="integer"/>
     </fragment>
+
+    <action
+        android:id="@+id/action_global_movieFragment"
+        app:destination="@id/movieFragment" />
 
 </navigation>

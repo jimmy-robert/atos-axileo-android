@@ -11,6 +11,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import cloud.robert.mcumovies.MainNavigationDirections
 import cloud.robert.mcumovies.R
 import cloud.robert.mcumovies.business.models.entities.Movie
 import cloud.robert.mcumovies.viewmodels.ActorViewModel
@@ -57,7 +58,8 @@ class MoviesFragment : Fragment() {
     }
 
     private fun navigateToMovie(movie: Movie) {
-        findNavController().navigate(R.id.movieFragment, bundleOf("movieId" to movie.id))
+        val action = MainNavigationDirections.actionGlobalMovieFragment(movie.id)
+        findNavController().navigate(action)
     }
 
     private class Adapter(

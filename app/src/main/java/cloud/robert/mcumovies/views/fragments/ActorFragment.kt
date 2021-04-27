@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.navArgs
 import cloud.robert.mcumovies.R
 import cloud.robert.mcumovies.business.models.entities.Actor
 import cloud.robert.mcumovies.utils.extensions.load
@@ -22,13 +23,9 @@ class ActorFragment : Fragment() {
     private lateinit var name: TextView
     private lateinit var character: TextView
 
-    var actorId = 0
+    private val args : ActorFragmentArgs by navArgs()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        actorId = requireArguments().getInt("actorId")
-    }
+    val actorId: Int get() = args.actorId
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

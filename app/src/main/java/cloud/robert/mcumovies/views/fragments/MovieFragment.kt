@@ -10,6 +10,7 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -26,14 +27,6 @@ import cloud.robert.mcumovies.views.viewholders.ActorViewHolder
 class MovieFragment : Fragment() {
 
     private val viewModel by viewModels<MovieViewModel>()
-
-    private var movieId = 0
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        movieId = requireArguments().getInt("movieId")
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -58,14 +51,16 @@ class MovieFragment : Fragment() {
         )
         movieList.adapter = adapter
 
-        viewModel.getMovie(movieId).observe(viewLifecycleOwner) {
+        val args: MovieFragmentArgs by navArgs()
+        viewModel.getMovie(args.movieId).observe(viewLifecycleOwner) {
             adapter.setMovieWithActors(it)
             adapter.notifyDataSetChanged()
         }
     }
 
     private fun navigateToActor(actor: Actor) {
-        findNavController().navigate(R.id.actorFragment, bundleOf("actorId" to actor.id))
+        val action = MovieFragmentDirections.actionMovieToActor(actor.id)
+        findNavController().navigate(action)
     }
 
     private class Adapter(
