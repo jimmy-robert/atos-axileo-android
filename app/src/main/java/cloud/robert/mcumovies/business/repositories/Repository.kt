@@ -1,7 +1,6 @@
 package cloud.robert.mcumovies.business.repositories
 
 import androidx.room.withTransaction
-import cloud.robert.mcumovies.app.McuApp
 import cloud.robert.mcumovies.business.databases.database.McuDatabase
 import cloud.robert.mcumovies.business.models.relations.MovieActorCrossReference
 import cloud.robert.mcumovies.business.network.McuApi
@@ -35,7 +34,6 @@ class Repository @Inject constructor(
                 clean()
                 insertAll(crossReferences)
             }
-
         }
     }
 
