@@ -8,4 +8,8 @@
         android:id="@+id/actorsFragment"
         android:icon="@drawable/ic_actors"
         android:title="Actors" />
+    <item
+        android:id="@+id/locationFragment"
+        android:icon="@drawable/ic_location"
+        android:title="Location" />
 </menu>

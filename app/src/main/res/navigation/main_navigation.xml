@@ -61,4 +61,10 @@
         android:id="@+id/action_global_movieFragment"
         app:destination="@id/movieFragment" />
 
+    <fragment
+        android:id="@+id/locationFragment"
+        android:name="cloud.robert.mcumovies.views.fragments.LocationFragment"
+        android:label="fragment_location"
+        tools:layout="@layout/fragment_location" />
+
 </navigation>
