@@ -6,9 +6,13 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
+import androidx.work.OneTimeWorkRequestBuilder
+import androidx.work.WorkManager
+import androidx.work.WorkRequest
 import cloud.robert.mcumovies.MainNavigationDirections
 import cloud.robert.mcumovies.R
 import cloud.robert.mcumovies.viewmodels.MainViewModel
+import cloud.robert.mcumovies.workers.DownloadDataWorker
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -37,8 +41,7 @@ class MainActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
 
-        lifecycleScope.launch {
-            viewModel.fetchData()
-        }
+        val workRequest = OneTimeWorkRequestBuilder<DownloadDataWorker>().build()
+        WorkManager.getInstance(this).enqueue(workRequest)
     }
 }
