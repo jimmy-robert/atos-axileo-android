@@ -7,6 +7,8 @@ import androidx.security.crypto.MasterKey
 import cloud.robert.mcumovies.business.databases.database.McuDatabase
 import cloud.robert.mcumovies.business.network.McuApi
 import cloud.robert.mcumovies.business.preferences.Preferences
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationServices
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -62,5 +64,10 @@ object McuAppModule {
                 EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM
             )
         )
+    }
+
+    @Provides
+    fun provideLocationClient(@ApplicationContext context: Context) : FusedLocationProviderClient {
+        return LocationServices.getFusedLocationProviderClient(context)
     }
 }

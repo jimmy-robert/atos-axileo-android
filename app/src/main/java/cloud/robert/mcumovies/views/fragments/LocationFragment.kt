@@ -15,10 +15,14 @@ import cloud.robert.mcumovies.utils.extensions.locationUpdates
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.location.LocationServices
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class LocationFragment : Fragment() {
 
+    @Inject
     lateinit var locationClient: FusedLocationProviderClient
 
     override fun onCreateView(
