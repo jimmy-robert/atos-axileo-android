@@ -1,6 +1,7 @@
 package cloud.robert.mcumovies.app
 
 import android.content.Context
+import android.hardware.SensorManager
 import androidx.room.Room
 import androidx.security.crypto.EncryptedSharedPreferences
 import androidx.security.crypto.MasterKey
@@ -15,7 +16,6 @@ import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
-import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
@@ -36,12 +36,6 @@ object McuAppModule {
         .addConverterFactory(GsonConverterFactory.create())
         .build()
         .create(McuApi::class.java)
-
-    @Provides
-    @Singleton
-    fun provideDatabase(@ApplicationContext context: Context): McuDatabase = Room
-        .databaseBuilder(context, McuDatabase::class.java, "mcu-db")
-        .build()
 
     @Provides
     fun provideMasterKey(@ApplicationContext context: Context): MasterKey =
@@ -70,4 +64,19 @@ object McuAppModule {
     fun provideLocationClient(@ApplicationContext context: Context) : FusedLocationProviderClient {
         return LocationServices.getFusedLocationProviderClient(context)
     }
+
+    @Provides
+    fun provideSensorManager(@ApplicationContext context: Context) : SensorManager {
+        return context.getSystemService(Context.SENSOR_SERVICE) as SensorManager
+    }
+}
+
+@Module
+@InstallIn(SingletonComponent::class)
+object DatabaseModule {
+    @Provides
+    @Singleton
+    fun provideDatabase(@ApplicationContext context: Context): McuDatabase = Room
+        .databaseBuilder(context, McuDatabase::class.java, "mcu-db")
+        .build()
 }

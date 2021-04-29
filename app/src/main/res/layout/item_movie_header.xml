@@ -51,7 +51,8 @@
         android:layout_marginTop="16dp"
         android:textColor="#888"
         android:textSize="12sp"
-        app:layout_constraintTop_toBottomOf="@id/movieHeaderBackdrop" />
+        app:layout_constraintTop_toBottomOf="@id/movieHeaderBackdrop"
+        android:screenReaderFocusable="true"/>
 
     <TextView
         android:id="@+id/movieHeaderTitle"
@@ -59,7 +60,8 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
         android:textColor="#333"
-        app:layout_constraintTop_toBottomOf="@id/movieHeaderYear" />
+        app:layout_constraintTop_toBottomOf="@id/movieHeaderYear"
+        android:screenReaderFocusable="true"/>
 
     <TextView
         android:id="@+id/movieHeaderTagline"
@@ -69,7 +71,8 @@
         android:layout_marginTop="12dp"
         android:textColor="#888"
         android:textStyle="italic"
-        app:layout_constraintTop_toBottomOf="@id/movieHeaderTitle" />
+        app:layout_constraintTop_toBottomOf="@id/movieHeaderTitle"
+        android:screenReaderFocusable="true"/>
 
     <TextView
         android:id="@+id/movieHeaderOverview"
@@ -79,6 +82,7 @@
         android:layout_marginTop="12dp"
         android:layout_marginBottom="24dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/movieHeaderTagline" />
+        app:layout_constraintTop_toBottomOf="@id/movieHeaderTagline"
+        android:screenReaderFocusable="true" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

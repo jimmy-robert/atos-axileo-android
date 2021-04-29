@@ -16,6 +16,8 @@ class ActorViewHolder(parent: ViewGroup) : DefaultViewHolder(parent, R.layout.it
     private val character: TextView by viewById(R.id.itemActorCharacter)
 
     fun bindActor(actor: Actor) {
+        itemView.contentDescription = "${actor.name}, plays ${actor.character}"
+
         picture.load(actor.picturePath.toTmdbImageUrl())
         name.text = actor.name
         character.text = actor.character

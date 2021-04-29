@@ -3,18 +3,14 @@ package cloud.robert.mcumovies.app
 import android.app.Application
 import android.app.NotificationChannel
 import android.app.NotificationManager
-
 import android.os.Build
 import android.util.Log
 import androidx.core.app.NotificationManagerCompat
-import androidx.hilt.work.HiltWorkerFactory
-import androidx.work.Configuration
 import com.google.firebase.messaging.FirebaseMessaging
 import dagger.hilt.android.HiltAndroidApp
-import javax.inject.Inject
 
 @HiltAndroidApp
-class McuApp : Application(), Configuration.Provider {
+class McuApp : Application() {
     override fun onCreate() {
         super.onCreate()
 
@@ -34,11 +30,4 @@ class McuApp : Application(), Configuration.Provider {
                 .createNotificationChannel(channel)
         }
     }
-
-    @Inject
-    lateinit var workerFactory: HiltWorkerFactory
-
-    override fun getWorkManagerConfiguration() = Configuration.Builder()
-        .setWorkerFactory(workerFactory)
-        .build()
 }

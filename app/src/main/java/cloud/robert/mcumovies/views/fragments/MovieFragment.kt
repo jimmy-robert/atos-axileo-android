@@ -119,6 +119,7 @@ class MovieFragment : Fragment() {
             backdrop.load(movie.backdropPath.toTmdbImageUrl())
             poster.load(movie.posterPath.toTmdbImageUrl())
             year.text = movie.releaseDate.take(4)
+            title.contentDescription = "Movie title: ${movie.title}"
             title.text = movie.title
             tagline.text = movie.tagline
             overview.text = movie.overview

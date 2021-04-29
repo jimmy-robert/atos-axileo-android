@@ -1,21 +1,29 @@
 package cloud.robert.mcumovies.workers
 
 import android.content.Context
-import androidx.hilt.work.HiltWorker
 import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
 import cloud.robert.mcumovies.business.repositories.Repository
-import dagger.assisted.Assisted
-import dagger.assisted.AssistedInject
+import dagger.hilt.EntryPoint
+import dagger.hilt.InstallIn
+import dagger.hilt.android.EntryPointAccessors
+import dagger.hilt.components.SingletonComponent
 
-@HiltWorker
-class DownloadDataWorker @AssistedInject constructor(
-    @Assisted context: Context,
-    @Assisted parameters: WorkerParameters,
-    private val repository: Repository
+class DownloadDataWorker(
+    context: Context,
+    parameters: WorkerParameters
 ) : CoroutineWorker(context, parameters) {
 
+    @EntryPoint
+    @InstallIn(SingletonComponent::class)
+    interface WorkerEntryPoint {
+        fun provideRepository(): Repository
+    }
+
     override suspend fun doWork(): Result {
+        val entryPoint = EntryPointAccessors.fromApplication(applicationContext, WorkerEntryPoint::class.java)
+        val repository = entryPoint.provideRepository()
+
         try {
             repository.fetchData()
         } catch (error: Exception) {

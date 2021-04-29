@@ -18,7 +18,7 @@ android {
         versionCode 1
         versionName "1.0"
 
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "cloud.robert.mcumovies.CustomTestRunner"
     }
 
     signingConfigs {
@@ -64,8 +64,8 @@ dependencies {
     implementation 'com.google.android.gms:play-services-location:18.0.0'
 
     // Hilt
-    implementation "com.google.dagger:hilt-android:$hilt_version"
-    kapt "com.google.dagger:hilt-compiler:$hilt_version"
+    implementation "com.google.dagger:hilt-android:2.35"
+    kapt "com.google.dagger:hilt-compiler:2.35"
 
     implementation "androidx.hilt:hilt-work:1.0.0-beta01"
     kapt 'androidx.hilt:hilt-compiler:1.0.0-beta01'
@@ -108,7 +108,16 @@ dependencies {
     implementation "androidx.work:work-runtime:$work_version"
     implementation "androidx.work:work-runtime-ktx:$work_version"
 
-    testImplementation 'junit:junit:4.+'
+    testImplementation 'junit:junit:4.13.2'
+    testImplementation 'com.google.truth:truth:1.0.1'
+
+    //androidTestImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$kotlin_version"
+    androidTestImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    androidTestImplementation 'com.google.truth:truth:1.0.1'
+
+    androidTestImplementation "com.google.dagger:hilt-android-testing:2.35"
+    kaptAndroidTest "com.google.dagger:hilt-compiler:2.35"
+    kaptAndroidTest 'androidx.hilt:hilt-compiler:1.0.0-beta01'
 }

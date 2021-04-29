@@ -16,6 +16,8 @@ class MovieViewHolder(parent: ViewGroup) : DefaultViewHolder(parent, R.layout.it
     private val year: TextView by viewById(R.id.itemMovieYear)
 
     fun bindMovie(movie: Movie) {
+        itemView.contentDescription = "${movie.title}, released in ${movie.releaseDate.take(4)}"
+
         poster.load(movie.posterPath.toTmdbImageUrl())
         year.text = movie.releaseDate.take(4)
         title.text = movie.title

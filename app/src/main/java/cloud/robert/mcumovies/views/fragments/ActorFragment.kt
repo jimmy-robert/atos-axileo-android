@@ -21,6 +21,7 @@ class ActorFragment : Fragment() {
 
     private val viewModel by viewModels<ActorViewModel>()
 
+    private lateinit var header: View
     private lateinit var picture: ImageView
     private lateinit var name: TextView
     private lateinit var character: TextView
@@ -40,7 +41,7 @@ class ActorFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val header = view.findViewById<View>(R.id.actorHeader)
+        header = view.findViewById(R.id.actorHeader)
         picture = header.findViewById(R.id.itemActorPicture)
         name = header.findViewById(R.id.itemActorName)
         character = header.findViewById(R.id.itemActorCharacter)
@@ -51,6 +52,8 @@ class ActorFragment : Fragment() {
     }
 
     private fun bindActor(actor: Actor) {
+        header.contentDescription = "${actor.name}, plays ${actor.character}"
+
         picture.load(actor.picturePath.toTmdbImageUrl())
         name.text = actor.name
         character.text = actor.character

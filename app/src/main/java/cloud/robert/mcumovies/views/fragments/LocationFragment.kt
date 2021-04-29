@@ -1,7 +1,12 @@
 package cloud.robert.mcumovies.views.fragments
 
 import android.Manifest
+import android.hardware.Sensor
+import android.hardware.SensorEvent
+import android.hardware.SensorEventListener
+import android.hardware.SensorManager
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -25,6 +30,9 @@ class LocationFragment : Fragment() {
     @Inject
     lateinit var locationClient: FusedLocationProviderClient
 
+    @Inject
+    lateinit var sensorManager: SensorManager
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -47,6 +55,10 @@ class LocationFragment : Fragment() {
         super.onCreate(savedInstanceState)
 
         locationClient = LocationServices.getFusedLocationProviderClient(requireContext())
+
+        sensorManager.getSensorList(Sensor.TYPE_ALL).forEach {
+            Log.i("MCU Movies", "${it.name} - ${it.stringType}")
+        }
     }
 
     override fun onResume() {
@@ -54,6 +66,23 @@ class LocationFragment : Fragment() {
 
         // todo check if we need to display dialog to explain the permission to user
         requestPermissionLauncher.launch(Manifest.permission.ACCESS_FINE_LOCATION)
+
+        sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER)?.let {
+            sensorManager.registerListener(listener, it, SensorManager.SENSOR_DELAY_NORMAL)
+        }
+    }
+
+    override fun onPause() {
+        super.onPause()
+        sensorManager.unregisterListener(listener)
+    }
+
+    private val listener = object : SensorEventListener {
+        override fun onSensorChanged(event: SensorEvent?) {
+            Log.i("MCU Movies", event?.values?.joinToString(",") ?: "Nothing to show")
+        }
+
+        override fun onAccuracyChanged(sensor: Sensor?, accuracy: Int) {}
     }
 
     private fun getLastKnownLocation() {
