@@ -1,11 +1,14 @@
 package cloud.robert.mcumovies.views.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -20,6 +23,7 @@ import cloud.robert.mcumovies.R
 import cloud.robert.mcumovies.business.models.entities.Actor
 import cloud.robert.mcumovies.business.models.entities.Movie
 import cloud.robert.mcumovies.business.models.relations.MovieWithActors
+import cloud.robert.mcumovies.services.CityTrackerService
 import cloud.robert.mcumovies.utils.defaults.DefaultViewHolder
 import cloud.robert.mcumovies.utils.extensions.load
 import cloud.robert.mcumovies.utils.extensions.toTmdbImageUrl

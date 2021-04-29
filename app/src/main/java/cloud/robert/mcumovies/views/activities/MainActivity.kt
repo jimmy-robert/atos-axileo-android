@@ -3,19 +3,16 @@ package cloud.robert.mcumovies.views.activities
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.WorkManager
-import androidx.work.WorkRequest
 import cloud.robert.mcumovies.MainNavigationDirections
 import cloud.robert.mcumovies.R
 import cloud.robert.mcumovies.viewmodels.MainViewModel
 import cloud.robert.mcumovies.workers.DownloadDataWorker
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {

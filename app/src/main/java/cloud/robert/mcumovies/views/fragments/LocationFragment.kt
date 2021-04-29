@@ -1,6 +1,9 @@
 package cloud.robert.mcumovies.views.fragments
 
 import android.Manifest
+import android.app.ActivityManager
+import android.content.Context
+import android.content.Intent
 import android.hardware.Sensor
 import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
@@ -10,11 +13,14 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import cloud.robert.mcumovies.R
+import cloud.robert.mcumovies.services.CityTrackerService
 import cloud.robert.mcumovies.utils.extensions.currentLocation
 import cloud.robert.mcumovies.utils.extensions.locationUpdates
 import com.google.android.gms.location.FusedLocationProviderClient
@@ -38,6 +44,25 @@ class LocationFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.fragment_location, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        view.findViewById<Button>(R.id.toggleServiceButton).setOnClickListener {
+
+            val activityManager = it.context.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
+            val service = activityManager.getRunningServices(10).firstOrNull { service ->
+                service.foreground && service.started
+            }
+
+            val intent = Intent(it.context, CityTrackerService::class.java)
+            if (service == null) {
+                ContextCompat.startForegroundService(it.context, intent)
+            } else {
+                it.context.stopService(intent)
+            }
+
+        }
     }
 
     private val requestPermissionLauncher =
