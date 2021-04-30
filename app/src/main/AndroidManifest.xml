@@ -47,6 +47,15 @@
             android:name=".services.CityTrackerService"
             android:foregroundServiceType="location" />
 
+        <provider android:name=".slices.McuSliceProvider"
+            android:authorities="cloud.robert.mcumovies"
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.app.slice.category.SLICE" />
+            </intent-filter>
+        </provider>
+
     </application>
 
 </manifest>

@@ -20,4 +20,7 @@ interface ActorDao {
 
     @Query("SELECT * FROM actor WHERE id = :id")
     fun get(id: Int) : LiveData<ActorWithMovies>
+
+    @Query("SELECT * FROM actor WHERE id = :id")
+    suspend fun getAsync(id: Int) : ActorWithMovies
 }
